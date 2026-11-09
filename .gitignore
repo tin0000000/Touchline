@@ -1,0 +1,8 @@
+.vs/
+work/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+Touchline-App.zip

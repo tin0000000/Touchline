@@ -1,0 +1,14 @@
+{
+  "name": "Touchline — Local Football",
+  "short_name": "Touchline",
+  "description": "Local football team management, match tracking, and player stats.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f5ef",
+  "theme_color": "#14251e",
+  "icons": [
+    { "src": "./icons/touchline.svg", "sizes": "192x192 512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

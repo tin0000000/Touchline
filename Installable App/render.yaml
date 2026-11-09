@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: touchline-football
+    runtime: python
+    plan: starter
+    buildCommand: python -m py_compile server.py
+    startCommand: python server.py --bind 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: TOUCHLINE_DB_PATH
+        value: /var/data/touchline.sqlite3
+    disk:
+      name: touchline-data
+      mountPath: /var/data
+      sizeGB: 1
+
+
