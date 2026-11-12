@@ -1,4 +1,4 @@
-const CACHE_NAME = 'touchline-v36';
+const CACHE_NAME = 'touchline-v37';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icons/touchline.svg', './assets/kit-flat-template.png', './assets/shirt-front-template.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
@@ -9,23 +9,25 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET' || new URL(event.request.url).pathname.startsWith('/api/')) return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
-    if (response.ok && new URL(event.request.url).origin === self.location.origin) {
+  const request = event.request;
+  const url = new URL(request.url);
+  if (request.method !== 'GET' || url.pathname.startsWith('/api/')) return;
+  const isAppDocument = request.mode === 'navigate' || url.pathname.endsWith('/index.html');
+  if (isAppDocument) {
+    event.respondWith(fetch(request).then(response => {
+      if (response.ok && url.origin === self.location.origin) {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+      }
+      return response;
+    }).catch(() => caches.match(request).then(cached => cached || caches.match('./index.html'))));
+    return;
+  }
+  event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(response => {
+    if (response.ok && url.origin === self.location.origin) {
       const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+      caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
     }
     return response;
   }).catch(() => caches.match('./index.html'))));
 });
-
-
-
-
-
-
-
-
-
-
-
