@@ -106,6 +106,78 @@ body{background:color-mix(in srgb,var(--club-primary) 5%,#f4f5ef)}
 .btn:disabled{opacity:.46;cursor:not-allowed;filter:saturate(.45)}.team-card-list{display:grid;gap:0}.team-card-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}.team-card-copy{display:grid;gap:3px;min-width:120px;flex:1}.team-card-copy strong{font:700 12px Manrope}.team-card-copy small{font:10px 'DM Mono';color:var(--muted)}.team-card-stats{font:10px 'DM Mono';color:var(--muted);white-space:nowrap}.team-card-row .text-link{white-space:nowrap}.jersey-number-label{display:block;margin:18px 0 6px;font:700 10px 'DM Mono';letter-spacing:.08em;color:var(--muted)}.jersey-number-input{width:100%;min-height:52px;padding:10px 14px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--ink);font:800 24px Manrope}.jersey-number-modal .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}.dark-mode .jersey-number-input{background:var(--surface-raised);color:var(--ink);border-color:var(--line)}.dark-mode .team-card-row{border-color:var(--line)}.kit-flat-number{font-size:46px!important;font-weight:900!important;letter-spacing:-.04em}@media(max-width:700px){.team-card-row{flex-wrap:wrap}.team-card-stats{margin-left:42px}.team-card-row .btn{margin-left:auto}}
 
 .social-export-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.social-export-option{display:grid;text-align:left;gap:6px;padding:15px;border:1px solid var(--line);border-radius:11px;background:var(--surface,#fff);color:var(--ink);cursor:pointer}.social-export-option:hover{border-color:var(--club-primary);background:color-mix(in srgb,var(--club-primary) 8%,var(--surface,#fff))}.social-export-option strong{font:800 13px Manrope}.social-export-option small{font:10px 'DM Mono';color:var(--muted)}@media(max-width:560px){.social-export-options{grid-template-columns:1fr}}
+
+
+/* Touchline interface polish: clearer controls, stronger hierarchy, and a calmer lineup editor. */
+:root{--ui-radius:14px;--ui-control-radius:11px}
+body{font-size:13px;line-height:1.48}
+.shell,.main,.content{min-width:0}
+h1{line-height:1.1;letter-spacing:-.035em}
+h2,h3{letter-spacing:-.02em}
+.subtitle,.muted{line-height:1.5}
+.panel,.fixture-card{border-radius:16px;box-shadow:0 6px 22px #1733220c}
+.panel{padding:19px}
+.panel-head{gap:12px}
+.nav button{min-height:43px;font-size:12px;border-radius:11px}
+.nav button .nav-icon{font-size:15px}
+.btn{min-height:40px;padding:0 14px;border-radius:11px;font-size:12px;font-weight:700;transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease}
+.btn-sm{min-height:35px;padding:0 11px;font-size:11px}
+.btn:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 5px 13px #132b1c18}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid color-mix(in srgb,var(--club-primary) 72%,#1885e8);outline-offset:2px}
+input,select,textarea{font-size:13px}
+.lineup-subnav{gap:8px;padding:12px 14px;border-radius:14px}
+.lineup-subnav>.btn{min-height:38px;padding:0 12px;font-size:11px}
+.drag-hint{font-size:11px;line-height:1.45}
+.lineup-picker{padding:20px;margin-bottom:16px;border-radius:18px}
+.lineup-picker .panel-head{margin-bottom:8px}
+.lineup-picker .panel-head h2{font-size:17px}
+.lineup-picker .panel-head .subtitle{font-size:12px;max-width:560px}
+.lineup-pick-grid{grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:9px;margin-top:15px}
+.lineup-pick{position:relative;min-height:55px;padding:10px 12px;gap:10px;border-radius:12px;transition:border-color .15s ease,background-color .15s ease,transform .15s ease,box-shadow .15s ease}
+.lineup-pick:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--club-primary) 65%,var(--line));box-shadow:0 5px 14px #17332212}
+.lineup-pick.selected{border-color:var(--club-primary);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--club-primary) 45%,transparent)}
+.lineup-pick-check{width:27px;height:27px;border-radius:9px;font-size:15px}
+.lineup-pick-copy strong{font-size:12px;line-height:1.25}
+.lineup-pick-copy small{font-size:10px;line-height:1.25;color:var(--muted);margin-top:3px}
+.lineup-pick>b{flex:0 0 auto;margin-left:auto;padding:6px 8px;border:0;border-radius:8px;background:var(--paper);color:var(--muted);font:700 9px 'DM Mono',monospace;letter-spacing:.04em;white-space:nowrap}
+.lineup-pick.selected>b{background:color-mix(in srgb,var(--club-primary) 14%,var(--surface));color:var(--ink)}
+.picker-actions .pill-tag{font-size:10px;padding:7px 10px}
+.pitch{border-radius:18px}
+.pitch-slot-empty{width:50px;height:64px;border-radius:16px 16px 13px 13px;box-shadow:0 5px 15px #041b143d}
+.pitch-slot-empty b{font-size:21px}
+.pitch-slot-empty small{font-size:9px}
+.bench-panel{border-radius:18px}
+.bench-row{min-height:54px;border-radius:12px}
+.field input,.field select,.field textarea,.search,.filter,.event-add input,.event-add select{min-height:42px;border-radius:10px}
+@media(max-width:900px){.lineup-pick-grid{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}}
+@media(max-width:700px){
+  .content{padding:22px 14px 94px}
+  .panel{padding:16px;border-radius:15px}
+  .lineup-subnav{position:relative;top:auto;align-items:center;padding:10px;border-radius:13px}
+  .lineup-picker{padding:16px}
+  .lineup-picker .panel-head{flex-wrap:wrap}
+  .picker-actions{width:100%;justify-content:space-between}
+  .lineup-pick-grid{grid-template-columns:1fr;max-height:330px;overflow-y:auto;overscroll-behavior:contain;padding:2px 5px 2px 0}
+  .lineup-pick{min-height:52px}
+  .lineup-grid{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:14px}
+  .lineup-grid>.pitch,.lineup-grid>.bench-panel{width:100%;min-width:0;justify-self:stretch}
+  .lineup-grid>.pitch{min-height:570px}
+  .pitch-player strong{font-size:9px}
+  .pitch-player small{font-size:8px}
+  .title-row{gap:10px;flex-wrap:wrap}
+  .title-row h1{font-size:27px}
+  .title-row>.btn{flex:1 1 145px;min-height:42px}
+}
+@media(max-width:420px){
+  .content{padding-left:11px;padding-right:11px}
+  .lineup-subnav>.btn{flex:1 1 28%;justify-content:center}
+  .kit-switch,.view-switch{flex:1 1 100%;justify-content:center}
+  .pitch{min-height:500px}
+  .pitch-player .shirt.jersey{width:39px;height:37px}
+  .pitch-brand{max-width:calc(100% - 46px);overflow:hidden}
+  .title-row>.btn{flex-basis:calc(50% - 8px);font-size:11px;padding:0 9px}
+}
+
 </style>
 </head>
 <body>
