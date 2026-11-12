@@ -1,4 +1,4 @@
-const CACHE_NAME = 'touchline-v37';
+const CACHE_NAME = 'touchline-v38';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icons/touchline.svg', './assets/kit-flat-template.png', './assets/shirt-front-template.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
@@ -14,7 +14,9 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET' || url.pathname.startsWith('/api/')) return;
   const isAppDocument = request.mode === 'navigate' || url.pathname.endsWith('/index.html');
   if (isAppDocument) {
-    event.respondWith(fetch(request).then(response => {
+    const latestUrl = new URL(request.url);
+    latestUrl.searchParams.set('__touchline_cache', CACHE_NAME);
+    event.respondWith(fetch(latestUrl.toString(), { cache: 'no-store', credentials: request.credentials }).then(response => {
       if (response.ok && url.origin === self.location.origin) {
         const copy = response.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
